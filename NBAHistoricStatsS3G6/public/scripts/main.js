@@ -50,3 +50,16 @@ document.getElementById("edit").onclick = (event) => {
 
         console.log("Player "+pid+" edited");
 }
+
+document.getElementById("getone").onclick = (event) => {
+        let pid = document.getElementById("getoneid").value;
+
+
+        const response = fetch("http://localhost:3000/api/DatabaseConnection/:id/?" + "playerid="+ pid ,
+        {
+        method: 'GET'
+        })
+        .then(response => response.json())
+        .then(data => console.log(data));
+       
+}

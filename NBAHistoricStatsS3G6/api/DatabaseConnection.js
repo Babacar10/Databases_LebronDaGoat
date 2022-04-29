@@ -30,6 +30,21 @@ const router = express.Router();
 router.use('/api/', express.json());
 router.get('/:id', async (req, res) => {
 	// get single player
+    try{
+
+        await connectPool.connect();
+
+        const result = await connectPool.request().query(`Select * From Player WHERE PlayerID = ${req.query.playerid}`);
+
+        const temp = result.recordset;
+
+        res.json(temp);
+    }
+
+    catch (error) {
+
+        res.status(500).json(error);
+    }
 });
 router.get('/', async (req, res) => {
 	// get all players
