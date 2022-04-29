@@ -27,7 +27,7 @@ const config = {
 const connectPool = new sql.ConnectionPool(config); 
 
 const router = express.Router();
-
+router.use('/api/', express.json());
 router.get('/:id', async (req, res) => {
 	// get single player
 });
@@ -62,6 +62,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 module.exports = router;
+
 
 
 
