@@ -1,11 +1,23 @@
 body {
-    background-color: silver;
+    background-color: rgb(56, 56, 56);
+}
+#addPlayer {
+    margin-top: auto;
+}
+nav {
+    background-color: rgb(104, 5, 5);
 }
 
 #testb {
     margin-left: 200px;
 }
 
-#tst {
+#submit {
+    margin-top: 300px;
+}
+
+#buttonContainer {
     margin-top: 200px;
+    margin-left: 300px;
+    border-radius: 1px;
 }

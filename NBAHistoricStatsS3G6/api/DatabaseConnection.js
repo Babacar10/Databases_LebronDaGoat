@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
 
         await connectPool.connect();
 
-        const result = await connectPool.request().query(`Select * From Team`);
+        const result = await connectPool.request().query(`Select * From Player`);
 
         const temp = result.recordset;
 
@@ -53,12 +53,77 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
 	// create player
+    try{
+
+        await connectPool.connect();
+
+        const result = await connectPool.request()
+        .input('Name', req.query.name)
+        .input('Height', req.query.height)
+        .input('Weight', req.query.weight)
+        .input('Position', req.query.position)
+        .input('HOF', req.query.hof)
+        .input('YearBorn', req.query.yearborn)
+        .execute('add_Player');
+
+
+        const temp = result.recordset;
+
+        res.json(temp);
+    }
+
+    catch (error) {
+
+        res.status(500).json(error);
+    }
 });
 router.put('/:id', async (req, res) => {
 	// update player
+    try{
+
+        await connectPool.connect();
+
+        const result = await connectPool.request()
+        .input('PlayerID', req.query.playerid)
+        .input('Name', req.query.name)
+        .input('Height', req.query.height)
+        .input('Weight', req.query.weight)
+        .input('Position', req.query.position)
+        .input('HOF', req.query.hof)
+        .input('YearBorn', req.query.yearborn)
+        .execute('edit_Player');
+
+
+        const temp = result.recordset;
+
+        res.json(temp);
+    }
+
+    catch (error) {
+
+        res.status(500).json(error);
+    }
 });
 router.delete('/:id', async (req, res) => {
 	// delete player
+    try{
+
+        await connectPool.connect();
+
+        const result = await connectPool.request()
+        .input('PlayerID', req.query.playerid)
+        .execute('delete_Player');
+
+
+        const temp = result.recordset;
+
+        res.json(temp);
+    }
+
+    catch (error) {
+
+        res.status(500).json(error);
+    }
 });
 
 module.exports = router;
