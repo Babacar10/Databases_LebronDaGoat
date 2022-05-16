@@ -1,6 +1,13 @@
 body {
     background-color: rgb(56, 56, 56);
 }
+p{
+    color:rgb(104, 5, 5);
+    font-size: 111px;
+}
+label{
+    color: turquoise;
+}
 #addPlayer {
     margin-top: auto;
 }
