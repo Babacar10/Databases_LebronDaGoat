@@ -29,13 +29,25 @@ let allEntries = fetch(apiURL)
                 // TODO: Add your code here.
                 //document.querySelector("#getone").innerHTML = "";
                 
-                fetch(`http://localhost:3000/api/DatabaseConnection`).then(response => response.json()).then(words => {
+                fetch(`http://localhost:3000/api/DatabaseConnection`).then(response => response.json()).then(data => {
                     // let i = 0
                     // while (i < words["words"].length) {
                     //     console.log(words);
                     // }
-                    console.log(words);
+                    //console.log(words);
                     
+                    var table = document.getElementById('tableBody');
+                    table.innerHTML ='';
+console.log(data);
+let dataHtml = ''
+data.forEach(element => {
+        let hof = "No"
+        if (element['HOF']){
+                hof = "Yes"
+        }
+        dataHtml += `<tr><td>${element['Name']}</td><td>${Math.floor(element['Height'] / 12)}' ${element['Height'] - Math.floor(element['Height'] / 12)*12}"</td><td>${element['Weight']}</td><td>${element['Position']}</td><td>${hof}</td></tr>`
+});
+table.innerHTML = dataHtml;
                     
                 })
                 // console.log(words);
@@ -48,14 +60,26 @@ let allEntries = fetch(apiURL)
                 // TODO: Add your code here.
                 //document.querySelector("#getone").innerHTML = "";
                 
-                fetch("http://localhost:3000/api/DatabaseConnection/:id/?" + "playerid="+ pid).then(response => response.json()).then(words => {
+                fetch("http://localhost:3000/api/DatabaseConnection/:id/?" + "playerid="+ pid).then(response => response.json()).then(data => {
                     let i = 0
                 //     while (i < words.length) {
                 //         console.log(words);
                 //     }
-                    console.log(words);
-                    var array = words[0];
-                    document.getElementById("display-array").textContent = array.Name +" "+ array.Height +" "+ array.Weight;
+                    //console.log(words);
+                    //var array = words[0];
+                    //document.getElementById("display-array").textContent = array.Name +" "+ array.Height +" "+ array.Weight;
+                    var table = document.getElementById('tableBody');
+                    table.innerHTML ='';
+console.log(data);
+let dataHtml = ''
+data.forEach(element => {
+        let hof = "No"
+        if (element['HOF']){
+                hof = "Yes"
+        }
+        dataHtml += `<tr><td>${element['Name']}</td><td>${Math.floor(element['Height'] / 12)}' ${element['Height'] - Math.floor(element['Height'] / 12)*12}"</td><td>${element['Weight']}</td><td>${element['Position']}</td><td>${hof}</td></tr>`
+});
+table.innerHTML = dataHtml;
                 })
                 // console.log(words);
                 // Hint for something you will need later in the process (after backend call(s))

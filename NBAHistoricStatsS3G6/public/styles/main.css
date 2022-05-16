@@ -28,3 +28,35 @@ nav {
     margin-left: 300px;
     border-radius: 1px;
 }
+.grid-item{
+    position: relative;
+    top:-100px;
+}
+#heyo{
+    position: relative;
+    top: -100px;
+}
+#dataGrid {
+    background: #FFF;
+    position: absolute;
+    top:-80px;
+    left: 50%;
+    margin: auto;
+}
+
+ 
+
+td, th {
+    border: 1.5px solid #bbbb;
+    padding: 7.5px;
+}
+tr {
+    align-self: center;
+    align-content: center;
+    text-align: center;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;}
+
