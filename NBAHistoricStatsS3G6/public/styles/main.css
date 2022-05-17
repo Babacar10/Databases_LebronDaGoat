@@ -152,3 +152,36 @@ flex-direction: column;
     background: white;
 }
 
+.wrapper{
+    width: 200px;
+    margin: 0 auto;
+    position: relative; 
+left: -350px;
+}
+.wrapper ul{
+    list-style: none;
+    margin-top: 2%;
+}
+
+.wrapper ul li{
+    background: #262626;
+    width: 170px;
+    border: 1px solid #fff;
+    height: 25px;
+    line-height: 25px;
+    text-align: center;
+    float: left;
+    color: #fff;
+    font-size: 14px;
+    position: relative;
+    font-family: big john;
+}
+.wrapper ul ul{
+    display: none;
+}
+
+.wrapper ul li:hover > ul{
+    display: block;
+    position: relative;
+    right: -200px;
+}

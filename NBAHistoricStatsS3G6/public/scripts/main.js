@@ -4,8 +4,57 @@ let allEntries = fetch(apiURL)
         .then(response => response.json())
         .then(data => console.log(data)); 
 
+        rhit.teamController = class {
+                constructor(){
+                        document.querySelector("#teamsearch").onclick = (event) => {
+                                this.loadteams();
+                        }
+                        document.querySelector("#teamfind").onclick = (event) => {
+                                this.chooseteam();
+                        }
 
+                }
+                loadteams(){
+                        let dataHtml = ''
+                        
+                        for(var i =0; i < 5; i++){
+                                dataHtml += `<li> teamname here </li>`
+                        }
+                        var table = document.getElementById('teamdrop');
+                        table.innerHTML = '<li id = "dropdownteams">Teams<ul>' + dataHtml + '</ul></li>';
+                }
+                chooseteam(){
+                //var table = document.getElementById('teamdrop');
+               // table.innerHTML = '<li id = "dropdownteams">Teams</li>';
+               let dataHtml = ''
+                        
+                        for(var i =0; i < 5; i++){
+                                dataHtml += `<li> player here </li>`
+                        }
+                        var table = document.getElementById('players');
+                        table.innerHTML = '<li id = "playersdropdown">Players<ul>' + dataHtml + '</ul></li>';
 
+                        dataHtml = ''
+                        
+                        for(var i =0; i < 5; i++){
+                                dataHtml += `<li> Team stats here </li>`
+                        }
+                        table = document.getElementById('yearstats');
+                        table.innerHTML = '<li id = "playersdropdown">Year Stats<ul>' + dataHtml + '</ul></li>';
+                }
+        }
+        rhit.mvpController = class {
+                constructor() {
+                        document.querySelector("#createmvp").onclick = (event) => {
+                                this.createmvp();
+                        }
+                }
+                createmvp(){
+                        var year = document.getElementById('21');
+                        var player = document.getElementById('20');
+                        console.log(year.value + ' ' + player.value);
+                }
+        }
 
         rhit.compareController = class {
                 constructor() {
@@ -117,10 +166,7 @@ table.innerHTML = dataHtml;
                         document.querySelector("#create").onclick = (event) => {
                                 this.createone();
                         };
-                        document.querySelector("#compare").onclick = (event) => {
-                                this.readcompareone();
-                                this.readcomparetwo();
-                        }
+                       
             }
             readAll() {
                 console.log(`Reading Players`);
@@ -305,10 +351,14 @@ table.innerHTML = dataHtml;
 rhit.main = function () {
 if(document.querySelector("#home")){	
 new rhit.AdminController();}
-	
-};
 if(document.querySelector("#compareit")){	
         new rhit.compareController();}
+if(document.querySelector("#mvp")){	
+        new rhit.mvpController();}
+
+if(document.querySelector("#teams")){	
+        new rhit.teamController();}
+};
 
 
 rhit.main();

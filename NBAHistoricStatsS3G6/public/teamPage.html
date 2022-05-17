@@ -8,7 +8,7 @@
         <link rel="stylesheet" href="styles/main.css">
         <title>NBA Historic Stats</title>
       </head>
-<body id = "mvp">
+<body id = "teams">
   <nav class="navbar navbar-dark fixed-top">
     <a href="index.html" 
     title="NBA Historic Stats">
@@ -28,17 +28,39 @@
 
 
 <div class="grid-item" id="heyo">
- <label for="10">PlayerID</label>
-<input type="text" id="20">
+ <label for="10">Team</label>
+<input type="text" id="40">
 <br>
-<label for="11">MVP Year</label>
-<input type="text" id="21">
+<label for="11">Year</label>
+<input type="text" id="41">
 <br>
-
-  
-<button id='createmvp' type='submit'>CREATE MVP</button>
+<div>
+    <button id='teamsearch' type='submit'>See Teams</button>
+    <button id='teamfind' type='submit'>Load Team Info</button>
+    </div>
+<div class = "wrapper">
+    <ul id = "teamdrop">
+        <li id = "dropdownteams">Teams
+        </li>
+        
+    </ul>
+</div>
+<div class = "wrapper">
+    <ul id="players">
+      <li id = "playersdropdown"> Players
+      </li>
+    </ul>
+  </div>
+<div class = "wrapper">
+    <ul id = "yearstats">
+      <li id = "yearstatsdropdown"> Year Stats
+      </li>
+    </ul>
+  </div>
 </div>
   
+  
+ 
   
 </body>
 <script type="module" src="scripts/main.js"></script>
