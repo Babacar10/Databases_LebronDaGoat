@@ -31,6 +31,7 @@ nav {
 .grid-item{
     position: relative;
     top:-100px;
+    
 }
 #heyo{
     position: relative;
@@ -58,5 +59,77 @@ tr {
 table {
     border-collapse: collapse;
     width: 100%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;}
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.boxContainer{
+    padding-top: 15%;
+    text-align: center;
+}
+
+#boxOne{
+    width: 800px;
+    height: 600px;
+    border: 5px solid white; 
+    margin: 20px auto;
+    display: inline-block;
+}
+
+.buttonContainer{
+
+position: absolute;
+flex-direction: column;
+
+}
+
+.buttonsPosition{
+    position: relative;
+    display: block;
+    padding: 10px 10px 10px 10px;
+}
+#getPlayers{
+    margin-right: 210px;
+}
+
+#deletePlayer{
+    margin-right: 22px;
+}
+
+#createUpdatePlayerID{
+    margin-right: 50px;
+}
+#createUpdatePlayerHeight{
+    margin-right: 50px;
+}
+#createUpdatePlayerWeight{
+    margin-right: 50px;
+}
+#createUpdatePlayerHOF{
+    margin-right: 50px;
+}
+#createUpdatePlayerPosition{
+    margin-right: 50px;
+}
+#createUpdateYearBorn{
+    margin-right: 50px;
+}
+#createUpdatePlayerName{
+    margin-right: 50px;
+}
+
+#boxTwo{
+
+    width: 800px;
+    height: 600px;
+    border: 5px solid white; 
+    margin: 20px auto;
+    display: inline-block;
+}
+
+.tableContainer{
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background: white;
+}
 
