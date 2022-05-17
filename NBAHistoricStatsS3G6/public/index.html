@@ -8,113 +8,102 @@
         <link rel="stylesheet" href="styles/main.css">
         <title>NBA Historic Stats</title>
       </head>
-<body>
+<body id="home">
   <nav class="navbar navbar-dark fixed-top">
-    <a class="navbar-brand">NBA Historic Stats</a>
+    <a href="index.html" 
+    title="NBA Historic Stats">
+    NBA Historic Stats
+ </a>
   </nav>
- 
-  <div id="buttonContainer">
-   <!-- <input type="text" id="1">
-   <input type="number" id="2">
-   <input type="number" id="3">
-   <input type="text" id="4">
-   <input type="number" id="5">
-   <input type="int" id="6">
-    <br>
-   <button id='submit' type='submit'>submit</button>
-   <button id='del' type='submit'>DELETE</button>
-   <input type="int" id="delnum">
-   <br>
-   <br>
-   <br>
-    <br>
-    <input type="number" id="10">
-   <input type="text" id="11">
-   <input type="number" id="12">
-   <input type="number" id="13">
-   <input type="text" id="14">
-   <input type="number" id="15">
-   <input type="int" id="16">
+
+  <div class="boxContainer">
+    <div id="boxOne">
+
+        <div class="buttonContainer">
+
+            <div id="getPlayers" class="buttonsPosition">
+                <button id='getall' class="button" type="submit">get all players</button>
+            </div>
+            <div id="getSinglePlayer" class="buttonsPosition">
+                <button id='getone' class="button" type="submit">get single player</button>
+                <input type="int" id="getoneid" placeholder="ID goes here">
+            </div>
+            <div id="deletePlayer" class="buttonsPosition">
+                <button id='del' type='submit'>Delete player</button>
+                <input type="int" id="getdelid" placeholder="ID goes here">
+            </div>
+            <div id="createUpdatePlayerID" class="buttonsPosition">
+                <label for="10">PlayerID</label>
+                <input type="text" id="10">
+            </div>
+
+            <div id="createUpdatePlayerName" class="buttonsPosition">
+                <label for="11">Name</label>
+                <input type="text" id="11">
+            </div>
+            
+            <div id="createUpdatePlayerHeight" class="buttonsPosition">
+                <label for="12">Height</label>
+                <input type="number" id="12">
+            </div>
+            <div id="createUpdatePlayerWeight" class="buttonsPosition">
+                <label for="13">Weight</label>
+                <input type="number" id="13">
+            </div>
+            <div id="createUpdatePlayerPosition" class="buttonsPosition">
+                <label for="14">Position</label>
+                <input type="text" id="14">
+            </div>
+            <div id="createUpdatePlayerHOF" class="buttonsPosition">
+                <label for="15">HOF</label>
+                <input type="text" id="15">
+            </div>
+            <div id="createUpdateYearBorn" class="buttonsPosition">
+                <label for="16">Year Born</label>
+                <input type="int" id="16">
+            </div>
+
+            <div id="createUpdateButtons" class="buttonsPosition">
+                <button id='create' type='submit'>CREATE</button>
+                <button id='update' type='submit'>UPDATE</button>
+            </div>
     
-   <button id='edit' type='submit'>update/edit</button>
-   <br>
-   <br>
-   <br>
-    <br> -->
- 
+        </div>
     
-  </div>
-<br>
-<br>
-<div class="grid-item">
-  <button id='getall' type='submit'>get all players</button> 
-  <br>
- <input type="int" id="getoneid" placeholder="ID goes here"> 
- <button id='getone' type='submit'>get single player</button>
-<div class="grid-item">
-<input type="int" id="getdelid" placeholder="ID goes here">
-<button id='del' type='submit'>DELETE</button>
-</div>
-<br>
-<br>
-<br>
+      </div>
+
+      <div id="boxTwo">
+
+        <div class="tableContainer">
+      
+            <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Height</th>
+                    <th>Weight</th>
+                    <th>Position</th>
+                    <th>Hall of Fame</th>
+                  </tr>
+                </thead>
+                <tbody id="tableBody">
+                 
+                </tbody>
+              </table>
+
+        </div>
+      
+      </div>
+      <br>
+      <a href="mvp.html">ADD MVP</a>
+      <br>
+    <a href="compare.html">COMPARE PLAYERS</a>
 
 
-<div class="grid-item" id="heyo">
- <label for="10">PlayerID</label>
-<input type="text" id="10">
-<br>
-<label for="11">Name</label>
-<input type="text" id="11">
-<br>
-  <label for="12">Height</label>
-   <input type="number" id="12">
-   <br>
-   <label for="13">Weight</label>
-   <input type="number" id="13">
-   <br>
-   <label for="14">Position</label>
-   <input type="text" id="14">
-   <br>
-   <label for="15">HOF</label>
-   <input type="text" id="15">
-   <br>
-   <label for="16">Year Born</label>
-   <input type="int" id="16">
-   <br>
-  
-   <button id='create' type='submit'>CREATE</button>
-   <button id='update' type='submit'>UPDATE</button>
   </div>
-   <br>
-   <br>
-   <br>
-   <div id="dataGrid">
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Height</th>
-          <th>Weight</th>
-          <th>Position</th>
-          <th>Hall of Fame</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody">
-       
-      </tbody>
-    </table>
-  </div>
-   
-  
-   
-   
-   
-  
-
-  </div>
-  
 
 </body>
 <script type="module" src="scripts/main.js"></script>
+<script src="scripts/bootstrap-material-design.js"></script>
+<script>$("body").bootstrapMaterialDesign();</script>
 </html>

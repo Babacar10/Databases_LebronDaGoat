@@ -7,11 +7,9 @@
         <link rel="stylesheet" href="styles/bootstrap-material-design.min.css">
         <link rel="stylesheet" href="styles/main.css">
         <title>NBA Historic Stats</title>
-    ,
       </head>
-<body id="compareit">
+<body id = "home">
   <nav class="navbar navbar-dark fixed-top">
-  
     <a href="index.html" 
     title="NBA Historic Stats">
     NBA Historic Stats
@@ -52,9 +50,13 @@
 <br>
 <br>
 <div class="grid-item">
-  
+  <button id='getall' type='submit'>get all players</button> 
+  <br>
+ <input type="int" id="getoneid" placeholder="ID goes here"> 
+ <button id='getone' type='submit'>get single player</button>
 <div class="grid-item">
-
+<input type="int" id="getdelid" placeholder="ID goes here">
+<button id='del' type='submit'>DELETE</button>
 </div>
 <br>
 <br>
@@ -62,19 +64,35 @@
 
 
 <div class="grid-item" id="heyo">
- <label for="30">PlayerID</label>
-<input type="text" id="30">
+ <label for="10">PlayerID</label>
+<input type="text" id="10">
 <br>
-<label for="31">PlayerID 2</label>
-<input type="text" id="31">
-<button id='compare' type='submit'>LOAD</button>
+<label for="11">Name</label>
+<input type="text" id="11">
 <br>
-
+  <label for="12">Height</label>
+   <input type="number" id="12">
+   <br>
+   <label for="13">Weight</label>
+   <input type="number" id="13">
+   <br>
+   <label for="14">Position</label>
+   <input type="text" id="14">
+   <br>
+   <label for="15">HOF</label>
+   <input type="text" id="15">
+   <br>
+   <label for="16">Year Born</label>
+   <input type="int" id="16">
+   <br>
+  
+   <button id='create' type='submit'>CREATE</button>
+   <button id='update' type='submit'>UPDATE</button>
   </div>
    <br>
    <br>
    <br>
-   <div id="dataGrid2">
+   <div id="dataGrid">
     <table>
       <thead>
         <tr>
@@ -85,29 +103,15 @@
           <th>Hall of Fame</th>
         </tr>
       </thead>
-      <tbody id="tableBody1">
-       
-      </tbody>
-    </table>
-  </div>
-  <div id="dataGrid1">
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Height</th>
-          <th>Weight</th>
-          <th>Position</th>
-          <th>Hall of Fame</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody2">
+      <tbody id="tableBody">
        
       </tbody>
     </table>
   </div>
 
- 
+  <a href="mvp.html">ADD MVP</a>
+  <a href="compare.html">COMPARE PLAYERS</a>
+
   
    
    
@@ -116,7 +120,7 @@
 
   </div>
   
-  
+
 </body>
 <script type="module" src="scripts/main.js"></script>
 </html>
