@@ -314,4 +314,45 @@ router.get('/getChamp/:year', async (req, res) => {
     }
 });
 
+router.get('/getTeam/:teamid', async (req, res) => {
+    // get single player
+    try {
+
+        await connectPool.connect();
+
+        const result = await connectPool.request()
+        
+        .input('TeamID', req.query.teamid)
+        .execute('GetTeam');
+
+        const temp = result.recordset;
+
+        res.json(temp);
+    } catch (error) {
+
+        res.status(500).json(error);
+    }
+});
+
+router.get('/getTeammates/:playeryear', async (req, res) => {
+    // get single player
+    try {
+
+        await connectPool.connect();
+
+        const result = await connectPool.request()
+        
+        .input('PlayerID', req.query.playerid)
+        .input('Year', req.query.year)
+        .execute('GetTeammates');
+
+        const temp = result.recordset;
+
+        res.json(temp);
+    } catch (error) {
+
+        res.status(500).json(error);
+    }
+});
+
 module.exports = router;
