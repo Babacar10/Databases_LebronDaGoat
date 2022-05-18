@@ -28,13 +28,36 @@ const connectPool = new sql.ConnectionPool(config);
 
 const router = express.Router();
 router.use('/api/', express.json());
-router.get('/:id', async (req, res) => {
+router.get('/:teamid', async (req, res) => {
+    // get team stats
+
+    try {
+
+        await connectPool.connect();
+
+        const result = await connectPool.request()
+        .input('Year', req.query.year)
+        .input('TeamID', req.query.teamid)
+
+        .execute('GetTeamStats');
+
+        const temp = result.recordset;
+
+        res.json(temp);
+    } catch (error) {
+
+        res.status(500).json(error);
+    }
+});
+router.get('/id/:id', async (req, res) => {
     // get single player
     try {
 
         await connectPool.connect();
 
-        const result = await connectPool.request().query(`Select * From Player WHERE PlayerID = ${req.query.playerid}`);
+        const result = await connectPool.request()
+        .input('PlayerID', req.query.playerid)
+        .execute('GetPlayerByID');
 
         const temp = result.recordset;
 
@@ -51,7 +74,7 @@ router.get('/', async (req, res) => {
 
         await connectPool.connect();
 
-        const result = await connectPool.request().query(`Select * From Player`);
+        const result = await connectPool.request().execute('GetAllPlayers');
 
         const temp = result.recordset;
 
@@ -221,6 +244,66 @@ router.post('/addPlayerStats', async (req, res) => {
         .input('PER', req.query.per)       
         .execute('add_PlayerStats');
 
+
+        const temp = result.recordset;
+
+        res.json(temp);
+    } catch (error) {
+
+        res.status(500).json(error);
+    }
+});
+
+router.get('/playerStats/:pid', async (req, res) => {
+    // get single player
+    try {
+
+        await connectPool.connect();
+
+        const result = await connectPool.request()
+        .input('PlayerID', req.query.playerid)
+        .input('Year', req.query.year)
+        .execute('GetPlayerStats');
+
+        const temp = result.recordset;
+
+        res.json(temp);
+    } catch (error) {
+
+        res.status(500).json(error);
+    }
+});
+
+router.get('/getMVP/:year', async (req, res) => {
+    // get single player
+    try {
+
+        await connectPool.connect();
+
+        const result = await connectPool.request()
+        
+        .input('Year', req.query.year)
+        .execute('GetMVP');
+
+        const temp = result.recordset;
+
+        res.json(temp);
+    } catch (error) {
+
+        res.status(500).json(error);
+    }
+});
+
+router.get('/getChamp/:year', async (req, res) => {
+    // get single player
+    try {
+
+        await connectPool.connect();
+
+        const result = await connectPool.request()
+        
+        .input('Year', req.query.year)
+        .execute('GetChampion');
 
         const temp = result.recordset;
 
