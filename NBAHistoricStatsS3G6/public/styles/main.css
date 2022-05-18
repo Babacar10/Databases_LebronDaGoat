@@ -63,7 +63,28 @@ nav {
     left: -200 px;
     margin: auto;
 }
+#dataGrid3 {
+    background: #FFF;
+    position: absolute;
+    top:600px;
+    left: -200 px;
+    margin: auto;
+}
+#dataGrid4 {
+    background: #FFF;
+    position: absolute;
+    top:400px;
+    left: -200 px;
+    margin: auto;
+}
 
+#dataGrid5 {
+    background: #FFF;
+    position: absolute;
+    top:400px;
+    left: 800px;
+    margin: auto;
+}
  
 
 td, th {

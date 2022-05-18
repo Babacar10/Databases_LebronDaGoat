@@ -26,8 +26,25 @@ let allEntries = fetch(apiURL)
                 chooseteam(){
                 //var table = document.getElementById('teamdrop');
                // table.innerHTML = '<li id = "dropdownteams">Teams</li>';
+               let year = document.getElementById('41')
+               let Team = document.getElementById('40')
                let dataHtml = ''
-                        
+               fetch("http://localhost:3000/api/DatabaseConnection/:teamid/?" + "year="+ year.value+"&teamid=" + Team.value ).then(response => response.json()).then(data => {
+                
+                    
+                   
+                var table = document.getElementById('tableBody1');
+                    table.innerHTML ='';
+console.log(data);
+let dataHtml = ''
+data.forEach(element => {
+       
+        dataHtml += `<tr><td>${element['TeamID']}</td><td>${element['Wins']}</td><td>${element['Losses']}</td><td>${element['Year']}</td><td>${element['FGPercent']}</td><td>${element['ThreePtPercent']}</td><td>${element['PtsPG']}</td><td>${element['TurnoversPG']}</td><td>${element['WinPercent']}</td></tr>`
+});
+table.innerHTML = dataHtml;
+                
+                                    
+                                })
                         for(var i =0; i < 5; i++){
                                 dataHtml += `<li> player here </li>`
                         }
@@ -39,8 +56,7 @@ let allEntries = fetch(apiURL)
                         for(var i =0; i < 5; i++){
                                 dataHtml += `<li> Team stats here </li>`
                         }
-                        table = document.getElementById('yearstats');
-                        table.innerHTML = '<li id = "playersdropdown">Year Stats<ul>' + dataHtml + '</ul></li>';
+                   
                 }
         }
         rhit.mvpController = class {
@@ -48,11 +64,38 @@ let allEntries = fetch(apiURL)
                         document.querySelector("#createmvp").onclick = (event) => {
                                 this.createmvp();
                         }
-                }
+                        document.querySelector("#findmvp").onclick = (event) => {
+                                this.getmvp();
+                        }
+                } 
                 createmvp(){
                         var year = document.getElementById('21');
                         var player = document.getElementById('20');
                         console.log(year.value + ' ' + player.value);
+                        fetch("http://localhost:3000/api/DatabaseConnection/addMVP/?" + "playerid="+ player.value +"&year="+year.value,{
+                                method: 'POST'
+                                });
+                                
+      
+                }
+
+                getmvp(){
+                        var year = document.getElementById('21');
+                        fetch("http://localhost:3000/api/DatabaseConnection/getMVP/:year/?" + "year="+ year.value).then(response => response.json()).then(data => {
+                
+                    
+                   
+                                var table = document.getElementById('tableBody2');
+                                    table.innerHTML ='';
+                console.log(data);
+                let dataHtml = ''
+                data.forEach(element => {
+                       
+                        dataHtml += `<tr><td>${year.value}</td><td>${element['PlayerID']}</td><td>${element['Name']}</td></tr>`;
+                        table.innerHTML =dataHtml;
+                }
+                );
+                });
                 }
         }
 
@@ -62,6 +105,7 @@ let allEntries = fetch(apiURL)
                                 document.querySelector("#compare").onclick = (event) => {
                                         this.readcompareone();
                                         this.readcomparetwo();
+                                        this.loadstats12();
                                 }
                     }
                     
@@ -71,7 +115,7 @@ let allEntries = fetch(apiURL)
                 // TODO: Add your code here.
                 //document.querySelector("#getone").innerHTML = "";
                 
-                fetch("http://localhost:3000/api/DatabaseConnection/:id/?" + "playerid="+ pid).then(response => response.json()).then(data => {
+                fetch("http://localhost:3000/api/DatabaseConnection/id/:id?" + "playerid="+ pid).then(response => response.json()).then(data => {
                     let i = 0
                 //     while (i < words.length) {
                 //         console.log(words);
@@ -101,17 +145,11 @@ table.innerHTML = dataHtml;
             readcomparetwo(){
                 console.log(`Reading Players`);
                 let pid = document.getElementById("31").value;
-                // TODO: Add your code here.
-                //document.querySelector("#getone").innerHTML = "";
+
                 
-                fetch("http://localhost:3000/api/DatabaseConnection/:id/?" + "playerid="+ pid).then(response => response.json()).then(data => {
+                fetch("http://localhost:3000/api/DatabaseConnection/id/:id?" + "playerid="+ pid).then(response => response.json()).then(data => {
                     let i = 0
-                //     while (i < words.length) {
-                //         console.log(words);
-                //     }
-                    //console.log(words);
-                    //var array = words[0];
-                    //document.getElementById("display-array").textContent = array.Name +" "+ array.Height +" "+ array.Weight;
+ 
                     var table = document.getElementById('tableBody2');
                     table.innerHTML ='';
 console.log(data);
@@ -131,6 +169,25 @@ table.innerHTML = dataHtml;
             
                     
             }
+        loadstats12(){
+                console.log(`Reading Players`);
+                let pid = document.getElementById("31").value;
+
+                
+                fetch("http://localhost:3000/api/DatabaseConnection/playerStats/:pid?" + "playerid="+ pid+"&year=0000").then(response => response.json()).then(data => {
+                    let i = 0
+ 
+                    var table = document.getElementById('tableBody6');
+                    table.innerHTML ='';
+console.log(data);
+let dataHtml = ''
+data.forEach(element => {
+       
+        dataHtml += `<tr><td>${element['AssistsPG']}</td><td>${element['ReboundsPG']}</td><td>${element['PointsPG']}</td><td>${element['TurnoversPG']}</td><td>${element['FGPercent']}</td><td>${element['ThreePtPercent']}</td><td>${element['TrueShootingPercent']}</td><td>${element['PlayerEfficiencyRating']}</td><td>${element['Year']}</td></tr>`
+});
+table.innerHTML = dataHtml;
+                })
+        }
         }
 
 
@@ -205,7 +262,7 @@ table.innerHTML = dataHtml;
                 // TODO: Add your code here.
                 //document.querySelector("#getone").innerHTML = "";
                 
-                fetch("http://localhost:3000/api/DatabaseConnection/:id/?" + "playerid="+ pid).then(response => response.json()).then(data => {
+                fetch("http://localhost:3000/api/DatabaseConnection/id/:id?" + "playerid="+ pid).then(response => response.json()).then(data => {
                     let i = 0
                 //     while (i < words.length) {
                 //         console.log(words);
@@ -257,7 +314,7 @@ table.innerHTML = dataHtml;
         let yearborn =  document.getElementById("16").value;
 
 
-        const response = fetch("http://localhost:3000/api/DatabaseConnection/:id/?" + "playerid="+ pid +"&name="+ name + "&height=" + height + "&weight=" + weight + "&position=" + position + "&hof=" + hof + "&yearborn=" +yearborn,
+        const response = fetch("http://localhost:3000/api/DatabaseConnection/:id?" + "playerid="+ pid +"&name="+ name + "&height=" + height + "&weight=" + weight + "&position=" + position + "&hof=" + hof + "&yearborn=" +yearborn,
         {
         method: 'PUT'
         });
