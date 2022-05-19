@@ -397,11 +397,7 @@ router.get('/getChampionshipByYear/:teamyear', async (req, res) => {
     }
 });
 
-<<<<<<< Updated upstream
-router.get('/teams/getAllTeams', async (req, res) => {
-=======
 router.get('/getChampionshipByYear1/:teamyear', async (req, res) => {
->>>>>>> Stashed changes
     // get single player
     try {
 
@@ -409,13 +405,9 @@ router.get('/getChampionshipByYear1/:teamyear', async (req, res) => {
 
         const result = await connectPool.request()
         
-<<<<<<< Updated upstream
-        .execute('GetAllTeams');
-=======
 
         .input('Year', req.query.year)
         .execute('GetChampion');
->>>>>>> Stashed changes
 
         const temp = result.recordset;
 
