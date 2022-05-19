@@ -85,6 +85,13 @@ nav {
     left: 800px;
     margin: auto;
 }
+#dataGrid8 {
+    background: #FFF;
+    position: absolute;
+    top:400px;
+    left: -200 px;
+    margin: auto;
+}
  
 
 td, th {

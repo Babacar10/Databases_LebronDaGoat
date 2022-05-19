@@ -187,6 +187,20 @@ data.forEach(element => {
 });
 table.innerHTML = dataHtml;
                 })
+                pid = document.getElementById("30").value;
+                fetch("http://localhost:3000/api/DatabaseConnection/playerStats/:pid?" + "playerid="+ pid+"&year=0000").then(response => response.json()).then(data => {
+                    let i = 0
+ 
+                    var table = document.getElementById('tableBody7');
+                    table.innerHTML ='';
+console.log(data);
+let dataHtml = ''
+data.forEach(element => {
+       
+        dataHtml += `<tr><td>${element['AssistsPG']}</td><td>${element['ReboundsPG']}</td><td>${element['PointsPG']}</td><td>${element['TurnoversPG']}</td><td>${element['FGPercent']}</td><td>${element['ThreePtPercent']}</td><td>${element['TrueShootingPercent']}</td><td>${element['PlayerEfficiencyRating']}</td><td>${element['Year']}</td></tr>`
+});
+table.innerHTML = dataHtml;
+                })
         }
         }
 
@@ -247,7 +261,7 @@ data.forEach(element => {
         if (element['HOF']){
                 hof = "Yes"
         }
-        dataHtml += `<tr><td>${element['Name']}</td><td>${Math.floor(element['Height'] / 12)}' ${element['Height'] - Math.floor(element['Height'] / 12)*12}"</td><td>${element['Weight']}</td><td>${element['Position']}</td><td>${hof}</td></tr>`
+        dataHtml += `<tr><td>${element['PlayerID']}</td><td>${element['Name']}</td><td>${Math.floor(element['Height'] / 12)}' ${element['Height'] - Math.floor(element['Height'] / 12)*12}"</td><td>${element['Weight']}</td><td>${element['Position']}</td><td>${hof}</td></tr>`
 });
 table.innerHTML = dataHtml;
                     
@@ -279,7 +293,7 @@ data.forEach(element => {
         if (element['HOF']){
                 hof = "Yes"
         }
-        dataHtml += `<tr><td>${element['Name']}</td><td>${Math.floor(element['Height'] / 12)}' ${element['Height'] - Math.floor(element['Height'] / 12)*12}"</td><td>${element['Weight']}</td><td>${element['Position']}</td><td>${hof}</td></tr>`
+        dataHtml += `<tr><td>${element['PlayerID']}</td><td>${element['Name']}</td><td>${Math.floor(element['Height'] / 12)}' ${element['Height'] - Math.floor(element['Height'] / 12)*12}"</td><td>${element['Weight']}</td><td>${element['Position']}</td><td>${hof}</td></tr>`
 });
 table.innerHTML = dataHtml;
                 })
@@ -294,7 +308,7 @@ table.innerHTML = dataHtml;
                 let pid = document.getElementById("getdelid").value;
                        
 
-                const response = fetch("http://localhost:3000/api/DatabaseConnection/:id/?" + "playerid="+ pid,
+                const response = fetch("http://localhost:3000/api/DatabaseConnection/:id?" + "playerid="+ pid,
                 {
                 method: 'DELETE'
         });
@@ -400,6 +414,138 @@ table.innerHTML = dataHtml;
 
 
 
+rhit.champController = class {
+        constructor() {
+                document.querySelector("#createchamp").onclick = (event) => {
+                        this.createchamp();
+                }
+                document.querySelector("#loadchamp").onclick = (event) => {
+                        this.loadchamp();
+                }
+        } 
+        createchamp(){
+                var year = document.getElementById('21');
+                var player = document.getElementById('20');
+                console.log(year.value + ' ' + player.value);
+                fetch("http://localhost:3000/api/DatabaseConnection/addChamp/?" + "teamid="+ player.value +"&year="+year.value,{
+                        method: 'POST'
+                        });
+                        
+
+        }
+
+        loadchamp(){
+                var year = document.getElementById('21');
+                var one;
+                fetch("http://localhost:3000/api/DatabaseConnection/getChampionshipByYear1/:teamyear?" + "year="+ year.value).then(response => response.json()).then(data => {
+        
+            
+           
+                        one = data[0]['TeamID'];
+                            
+        console.log(data[0]['TeamID']);
+    
+       
+        });
+
+
+
+                fetch("http://localhost:3000/api/DatabaseConnection/getChampionshipByYear/:teamyear?" + "year="+ year.value).then(response => response.json()).then(data => {
+        
+            
+           
+                        var table = document.getElementById('tableBody8');
+                            table.innerHTML ='';
+        console.log(data);
+        let dataHtml = ''
+        data.forEach(element => {
+               
+                dataHtml += `<tr><td>${year.value}</td><td>${one}</td><td>${element['Name']}</td></tr>`;
+                table.innerHTML =dataHtml;
+        }
+        );
+        });
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+rhit.playerstatsController = class {
+        constructor() {
+        
+                document.querySelector("#update3").onclick = (event) => {
+                        this.editone();
+                };
+                document.querySelector("#create3").onclick = (event) => {
+                        this.createone();
+                };
+               
+    }
+    
+
+editone(){
+let pid = document.getElementById("50").value;
+let APG = document.getElementById("51").value;
+let RPG = document.getElementById("52").value;
+let PPG = document.getElementById("53").value;
+let Turnovers = document.getElementById("54").value;
+let FG = document.getElementById("55").value;
+let ThreePT =  document.getElementById("56").value;
+let TSP =  document.getElementById("57").value;
+let year =  document.getElementById("58").value;
+let PER =  document.getElementById("59").value;
+
+
+const response = fetch("http://localhost:3000/api/DatabaseConnection/updatePStats/?" + "playerid="+ pid +"&apg="+ APG + "&rpg=" + RPG + "&ppg=" + PPG + "&topg=" +Turnovers + "&fgpct=" + FG + "&threepct=" +ThreePT +"&per="+PER +"&tsp="+TSP+"&year="+year,
+{
+method: 'POST'
+});
+
+console.log("Player "+pid+" edited");
+}
+
+createone(){
+let pid = document.getElementById("50").value;
+let APG = document.getElementById("51").value;
+let RPG = document.getElementById("52").value;
+let PPG = document.getElementById("53").value;
+let Turnovers = document.getElementById("54").value;
+let FG = document.getElementById("55").value;
+let ThreePT =  document.getElementById("56").value;
+let TSP =  document.getElementById("57").value;
+let year =  document.getElementById("58").value;
+let PER =  document.getElementById("59").value;
+const response = fetch("http://localhost:3000/api/DatabaseConnection/addPlayerStats/?" + "playerid="+ pid +"&apg="+ APG + "&rpg=" + RPG + "&ppg=" + PPG + "&topg=" +Turnovers + "&fgpct=" + FG + "&threepct=" +ThreePT + "&tsp="+TSP+"&per="+PER+"&year="+year,
+{
+method: 'POST'
+});
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -415,7 +561,13 @@ if(document.querySelector("#mvp")){
 
 if(document.querySelector("#teams")){	
         new rhit.teamController();}
-};
 
+if(document.querySelector("#champ")){	
+        new rhit.champController();
+};
+if(document.querySelector("#playerstats")){	
+        new rhit.playerstatsController();
+};
+};
 
 rhit.main();
