@@ -211,5 +211,5 @@ left: -350px;
 .wrapper ul li:hover > ul{
     display: block;
     position: relative;
-    right: -200px;
+    right: -300px;
 }

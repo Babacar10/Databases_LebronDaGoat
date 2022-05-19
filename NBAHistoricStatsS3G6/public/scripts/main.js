@@ -16,16 +16,24 @@ let allEntries = fetch(apiURL)
                 }
                 loadteams(){
                         let dataHtml = ''
+                        fetch("http://localhost:3000/api/DatabaseConnection/teams/getAllTeams").then(response => response.json()).then(data => {
+                    let i = 0
+               var table = document.getElementById('teamdrop');
+                    table.innerHTML ='';
+console.log(data);
+let dataHtml = ''
+data.forEach(element => {
+       
+        dataHtml += `<li> ${element["Name"]} id:${element["TeamID"]} </li>`
+});
+table.innerHTML = '<li id = "dropdownteams">Teams<ul>' + dataHtml + '</ul></li>';
+                })
+                       
                         
-                        for(var i =0; i < 5; i++){
-                                dataHtml += `<li> teamname here </li>`
-                        }
-                        var table = document.getElementById('teamdrop');
-                        table.innerHTML = '<li id = "dropdownteams">Teams<ul>' + dataHtml + '</ul></li>';
+                        
                 }
                 chooseteam(){
-                //var table = document.getElementById('teamdrop');
-               // table.innerHTML = '<li id = "dropdownteams">Teams</li>';
+                
                let year = document.getElementById('41')
                let Team = document.getElementById('40')
                let dataHtml = ''
@@ -45,17 +53,39 @@ table.innerHTML = dataHtml;
                 
                                     
                                 })
-                        for(var i =0; i < 5; i++){
-                                dataHtml += `<li> player here </li>`
-                        }
-                        var table = document.getElementById('players');
-                        table.innerHTML = '<li id = "playersdropdown">Players<ul>' + dataHtml + '</ul></li>';
 
-                        dataHtml = ''
+
+
+                 fetch("http://localhost:3000/api/DatabaseConnection/getPlayersFromTeam/:teamyear?" + "teamid="+ Team.value + "&year=" + year.value).then(response => response.json()).then(data => {
+                    
+               var table = document.getElementById('players');
+                    table.innerHTML ='';
+console.log(data);
+let dataHtml = ''
+data.forEach(element => {
+       
+        dataHtml += `<li> ${element["Name"]} </li>`
+});
+table.innerHTML = '<li id = "playersdropdown">Players<ul>' + dataHtml + '</ul></li>';
+                })
+
+
                         
-                        for(var i =0; i < 5; i++){
-                                dataHtml += `<li> Team stats here </li>`
-                        }
+                fetch("http://localhost:3000/api/DatabaseConnection/getTeam/:teamid?" + "teamid="+ Team.value + "&year=" + year.value).then(response => response.json()).then(data => {
+                    
+                        var table = document.getElementById('tableBody2');
+                             table.innerHTML ='';
+         console.log(data);
+         let dataHtml = ''
+         data.forEach(element => {
+                
+                 dataHtml += `<tr> <td>${element["Name"]}</td><td>${element["State"]}</td><td>${element["City"]}</td><td>${element["TeamID"]}</td></tr>`
+         });
+         table.innerHTML = dataHtml ;
+                         })
+                      
+                        
+                        
                    
                 }
         }
