@@ -437,4 +437,23 @@ router.get('/teams/getAllTeams', async (req, res) => {
     }
 });
 
+router.get('/players/byName', async (req, res) => {
+    // get single player
+    try {
+
+        await connectPool.connect();
+
+        const result = await connectPool.request()
+        .input('PlayerName', req.query.name)
+        .execute('GetPlayersByName');
+
+        const temp = result.recordset;
+
+        res.json(temp);
+    } catch (error) {
+
+        res.status(500).json(error);
+    }
+});
+
 module.exports = router;
