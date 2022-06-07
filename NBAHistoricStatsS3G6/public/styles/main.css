@@ -109,7 +109,7 @@ td, th {
 tr {
     align-self: center;
     align-content: center;
-    text-align: center;
+    text-align: center; 
 }
 table {
     border-collapse: collapse;
